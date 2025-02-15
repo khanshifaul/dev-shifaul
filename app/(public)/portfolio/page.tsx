@@ -23,8 +23,7 @@ const PortfolioPage = () => {
             Portfolio
           </h1>
           <p className="lg:leading-loose text-lg lg:text-xl">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
-            voluptatum provident dignissimos dolorem esse omnis praesentium
+            {`Explore a curated selection of projects that represent the intersection of creativity, technology, and innovation. Each project is a testament to my commitment to developing practical, cutting-edge solutions.`}
           </p>
         </div>
       </div>

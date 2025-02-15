@@ -36,8 +36,7 @@ const BlogPage = () => {
             Blog
           </h1>
           <p className="lg:leading-loose text-lg lg:text-xl">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis
-            voluptatum provident dignissimos dolorem esse omnis praesentium
+            {`Explore my latest insights and musings on a wide range of topics, from technology and software development to personal growth and self-improvement. Join me on this journey of continuous learning and discovery.`}
           </p>
         </div>
       </div>

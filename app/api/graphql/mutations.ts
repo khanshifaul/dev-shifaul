@@ -153,3 +153,31 @@ export const DELETE_NEWSLETTER_SUBSCRIBER = gql`
     }
   }
 `;
+
+export const CREATE_PROJECT = gql`
+  mutation CreateProject($input: CreateProjectInput!) {
+    createProject(input: $input) {
+      id
+      slug
+      title
+      subtitle
+      client
+      logo
+      services
+      technologies
+      website
+      thumbnail
+      about
+      goal
+      execution
+      results
+      goalImages
+      resultImages
+      tags {
+        name
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;

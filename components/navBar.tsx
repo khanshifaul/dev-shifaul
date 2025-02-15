@@ -66,17 +66,19 @@ const NavBar = ({ className }: NavBarProps) => {
       </nav>
 
       {/* Mobile Navigation Drawer */}
-      <div
-        className={`md:hidden min-h-screen w-screen fixed left-0 z-50 transition-all bg-blue-300 dark:bg-slate-900 text-black dark:text-white p-4 ${
-          navIsOpen ? "animate-right-left" : "translate-x-full"
-        }`}
-      >
-        <nav className="flex flex-col justify-start items-start gap-8">
-          {links.map((link) => (
-            <NavLink key={link.href} href={link.href} text={link.text} />
-          ))}
-        </nav>
-      </div>
+      {navIsOpen && (
+        <div
+          className={`md:hidden min-h-screen w-screen fixed left-0 z-50 transition-all bg-blue-300 dark:bg-slate-900 text-black dark:text-white p-4 ${
+            navIsOpen ? "animate-right-left" : "translate-x-full"
+          }`}
+        >
+          <nav className="flex flex-col justify-start items-start gap-8">
+            {links.map((link) => (
+              <NavLink key={link.href} href={link.href} text={link.text} />
+            ))}
+          </nav>
+        </div>
+      )}
     </div>
   );
 };

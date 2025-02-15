@@ -13,7 +13,7 @@ const publicRoutes = [
   "/service",
   "/contact",
 ];
-const authRoutes = ["/sign-in", "/sign-up"];
+const authRoutes = ["/sign-in"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
 const adminRoutes = ["/admin/(.*)"];
 
