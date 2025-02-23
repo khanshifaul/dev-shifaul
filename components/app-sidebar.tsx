@@ -60,7 +60,7 @@ export const AppSidebar: React.FC<AppSidebarProps> = ({ role }) => {
                   router.push(link.path);
                 }}
                 key={index}
-                className="w-full text-left flex justify-start items-center gap-2"
+                className="w-full text-left flex justify-start items-center gap-2 cursor-pointer"
               >
                 <Icon className="h-5 w-5" />
                 {link.name}
