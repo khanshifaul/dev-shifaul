@@ -3,7 +3,7 @@ import CursorWrapper from "@/components/cursor-wrapper";
 import { AProviders } from "@/components/providers/apollo-provider";
 import { StoreProvider } from "@/components/providers/store-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
@@ -41,6 +41,7 @@ export default function RootLayout({
           </CursorWrapper>
         </ThemeProvider>
       </body>
+      <GoogleTagManager gtmId="GT-552SZ8X" />
       <GoogleAnalytics gaId="G-EQNCKW71HP" />
     </html>
   );
