@@ -1,14 +1,4 @@
 "use client";
-import {
-  FileText,
-  Home,
-  MessageSquare,
-  Package,
-  Settings,
-  User,
-  Users,
-} from "lucide-react";
-
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,27 +8,38 @@ import {
   SidebarGroup,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { useRouter } from "next/navigation";
 
+import { useRouter } from "next/navigation";
+import {
+  LuFileText,
+  LuMessageSquare,
+  LuSettings,
+  LuUser,
+  LuUsers,
+} from "react-icons/lu";
+import { PiProjectorScreenChart } from "react-icons/pi";
+import { RiHome2Line } from "react-icons/ri";
 interface AppSidebarProps {
   role: "admin" | "user";
 }
 
 export const adminNavData = [
-  { name: "Dashboard", path: "/admin", icon: Home },
-  { name: "Messages", path: "/admin/messages", icon: MessageSquare },
-  { name: "Users", path: "/admin/users", icon: User },
-  { name: "Blog Posts", path: "/admin/blog-posts", icon: FileText },
-  { name: "Subscribers", path: "/admin/subscribers", icon: Users },
-  { name: "Settings", path: "/admin/settings", icon: Settings },
+  { name: "Dashboard", path: "/admin", icon: RiHome2Line },
+  { name: "Messages", path: "/admin/messages", icon: LuMessageSquare },
+  { name: "Users", path: "/admin/users", icon: LuUser },
+  {
+    name: "Portfolio Projects",
+    path: "/admin/projects",
+    icon: PiProjectorScreenChart,
+  },
+  { name: "Blog Posts", path: "/admin/blog-posts", icon: LuFileText },
+  { name: "Subscribers", path: "/admin/subscribers", icon: LuUsers },
+  { name: "Settings", path: "/admin/settings", icon: LuSettings },
 ];
 
 export const userNavData = [
-  { name: "My Account", path: "/user", icon: User },
-  { name: "Change Password", path: "/user/password-change", icon: User },
-  { name: "My Cart", path: "/user/cart", icon: Package },
-  { name: "My Order", path: "/user/my-orders", icon: Package },
-  { name: "My Wishlist", path: "/user/my-wishlists", icon: Package },
+  { name: "My Account", path: "/user", icon: LuUser },
+  { name: "Change Password", path: "/user/password-change", icon: LuUser },
 ];
 export const AppSidebar: React.FC<AppSidebarProps> = ({ role }) => {
   const router = useRouter();
