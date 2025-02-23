@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  experimental: {
-    nextScriptWorkers: true,
-  },
   images: {
     dangerouslyAllowSVG: true,
     unoptimized: true,
