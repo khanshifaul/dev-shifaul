@@ -3,8 +3,17 @@ import CursorWrapper from "@/components/cursor-wrapper";
 import { AProviders } from "@/components/providers/apollo-provider";
 import { StoreProvider } from "@/components/providers/store-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import Head from "next/head";
+import type { Metadata } from "next";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Shifaul Islam - Aspiring Software Engineer | AI & BCI Enthusiast",
+  description:
+    "Welcome to the portfolio of Shifaul Islam, an aspiring software engineer passionate about AI and brain-computer interfaces. Explore projects, skills, and insights on technology and innovation.",
+  verification: {
+    google: "lbyp2dC9_aYxIWYVGEV5cnZ74DaZK40hAyrvvfiZqCQ",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -13,12 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
-        <meta
-          name="google-site-verification"
-          content="lbyp2dC9_aYxIWYVGEV5cnZ74DaZK40hAyrvvfiZqCQ"
-        />
-      </Head>
       <body className={`w-full max-w-screen h-screen`}>
         <ThemeProvider
           attribute="class"
