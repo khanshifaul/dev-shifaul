@@ -181,3 +181,16 @@ export const CREATE_PROJECT = gql`
     }
   }
 `;
+
+export const DELETE_PROJECT = gql`
+  mutation DeleteProject($deleteProjectId: ID!) {
+    deleteProject(id: $deleteProjectId) {
+      id
+      slug
+      title
+      subtitle
+      client
+      logo
+    }
+  }
+`;

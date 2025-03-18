@@ -12,6 +12,7 @@ const publicRoutes = [
   "/blog",
   "/service",
   "/contact",
+  "/resume",
 ];
 const authRoutes = ["/sign-in"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
@@ -22,38 +23,35 @@ export default async function authMiddleware(request: NextRequest) {
   const isPublicRoute = publicRoutes.includes(pathName);
   const isAuthRoute = authRoutes.includes(pathName);
   const isPasswordRoute = passwordRoutes.includes(pathName);
-  const isAdminRoute = adminRoutes.includes(pathName);
+  const isAdminRoute = adminRoutes.some((route) => {
+    const regex = new RegExp(`^${route.replace(/\*/g, ".*")}$`);
+    return regex.test(pathName);
+  });
 
   const { data: session } = await betterFetch<Session>(
     "/api/auth/get-session",
     {
       baseURL: process.env.BETTER_AUTH_URL,
       headers: {
-        //get the cookie from the request
         cookie: request.headers.get("cookie") || "",
       },
     }
   );
 
-  if (!session) {
-    if (isPublicRoute) {
-      return NextResponse.next();
-    }
-    if (isAuthRoute || isPasswordRoute) {
-      return NextResponse.next();
-    }
-    return NextResponse.redirect(new URL("/sign-in", request.url));
-  }
+  // Determine target URL using logical expressions and ternary operators
+  const target = !session
+    ? // If no session, redirect unless route is public/auth/password
+      !(isPublicRoute || isAuthRoute || isPasswordRoute)
+      ? new URL("/sign-in", request.url)
+      : null
+    : // If session exists, redirect to home if on auth/password route or admin without permission
+    isAuthRoute ||
+      isPasswordRoute ||
+      (isAdminRoute && session.user.role !== "admin")
+    ? new URL("/", request.url)
+    : null;
 
-  if (isAuthRoute || isPasswordRoute) {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
-  if (isAdminRoute && session.user.role !== "admin") {
-    return NextResponse.redirect(new URL("/", request.url));
-  }
-
-  return NextResponse.next();
+  return target ? NextResponse.redirect(target) : NextResponse.next();
 }
 
 export const config = {

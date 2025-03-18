@@ -287,12 +287,6 @@ export default function AboutPage() {
           transition={{ duration: 1, delay: 0.5 }}
           className="flex flex-col md:flex-row items-center gap-8"
         >
-          <motion.img
-            whileHover={{ scale: 1.05 }}
-            src="/images/hobby.jpg"
-            alt="Hobby"
-            className="w-64 h-64 rounded-lg object-cover shadow-lg"
-          />
           <motion.p className="text-lg max-w-xl">
             In my free time, I enjoy photography, exploring nature, and diving
             into topics like technology, science fiction, and the ethics of AI.
