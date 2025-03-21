@@ -10,8 +10,17 @@ interface PostCardProps {
 }
 
 const motion_image = {
-  animate: {
+  initial: {
+    rotate: 0,
+  },
+  hover: {
     rotate: [0, 3],
+    transition: {
+      duration: 1,
+    },
+  },
+  animate: {
+    rotate: [3, 0],
     transition: {
       duration: 1,
     },
@@ -19,8 +28,17 @@ const motion_image = {
 };
 
 const motion_card = {
-  animate: {
+  initial: {
+    scale: 1,
+  },
+  hover: {
     scale: [1, 1.05],
+    transition: {
+      duration: 1,
+    },
+  },
+  animate: {
+    scale: [1.05, 1],
     transition: {
       duration: 1,
     },
@@ -30,12 +48,13 @@ const motion_card = {
 const PostCard = ({ post }: PostCardProps) => (
   <Link href={`/blog/${post.slug}`} className="w-full">
     <motion.div
-      whileHover="animate"
+      initial="initial"
+      whileHover="hover"
       variants={motion_card}
       whileTap={{ scale: [1, 0.9], transition: { duration: 1 } }}
       className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
     >
-      <motion.div variants={motion_image}>
+      <motion.div variants={motion_image} initial="initial" whileHover="hover">
         <Image
           src={post.thumbnail}
           alt={post.title}

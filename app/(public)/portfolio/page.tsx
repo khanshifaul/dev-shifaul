@@ -1,17 +1,12 @@
 "use client";
 import { GET_PROJECTS } from "@/app/api/graphql/queries";
+import { Skeleton } from "@/components/ui/skeleton";
 import { IProject } from "@/types/globals";
 import { useQuery } from "@apollo/client";
 import ProjectCard from "./_components/project-card";
 
 const PortfolioPage = () => {
-  const { loading, error, data } = useQuery(GET_PROJECTS);
-
-  if (loading) return <div className="text-center p-8">Loading...</div>;
-  if (error)
-    return (
-      <div className="text-center p-8 text-red-500">Error: {error.message}</div>
-    );
+  const { loading, data } = useQuery(GET_PROJECTS);
 
   const projects: IProject[] = data?.projects || [];
 
@@ -28,17 +23,29 @@ const PortfolioPage = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 p-2 lg:p-0">
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.id}
-            client={project.client}
-            title={project.title}
-            slug={project.slug}
-            tags={project.tags.map((tag) => tag.name)}
-            logo={project.logo}
-            thumbnail={project.thumbnail}
-          />
-        ))}
+        {loading ? (
+          <>
+            <Skeleton className="w-full h-96 bg-slate-500 dark:bg-slate-900 rounded-4xl overflow-hidden" />
+
+            <Skeleton className="w-full h-96 bg-slate-500 dark:bg-slate-900 rounded-4xl overflow-hidden" />
+          </>
+        ) : projects.length > 0 ? (
+          projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              client={project.client}
+              title={project.title}
+              slug={project.slug}
+              tags={project.tags.map((tag) => tag.name)}
+              logo={project.logo}
+              thumbnail={project.thumbnail}
+            />
+          ))
+        ) : (
+          <div className="text-center text-gray-500 dark:text-gray-400 text-xl p-12">
+            No Projects Found!
+          </div>
+        )}
       </div>
     </div>
   );

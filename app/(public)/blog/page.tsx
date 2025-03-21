@@ -1,5 +1,6 @@
 "use client";
 import { GET_BLOG_POSTS } from "@/app/api/graphql/queries";
+import { Skeleton } from "@/components/ui/skeleton";
 import { IBlogPost } from "@/types/globals";
 import { useQuery } from "@apollo/client";
 import FeaturedArticles from "./_components/featured-articles";
@@ -11,16 +12,9 @@ import SearchForm from "./_components/search-form";
 interface BlogPostsQueryResult {
   blogPosts: IBlogPost[];
 }
-const BlogPage = () => {
-  const { loading, error, data } =
-    useQuery<BlogPostsQueryResult>(GET_BLOG_POSTS);
 
-  if (loading) return <div className="text-center p-8">Loading...</div>;
-  if (error) {
-    return (
-      <div className="text-center p-8 text-red-500">Error: {error.message}</div>
-    );
-  }
+const BlogPage = () => {
+  const { loading, data } = useQuery<BlogPostsQueryResult>(GET_BLOG_POSTS);
 
   // Filter published posts and exclude those with null publishedAt
   const publishedPosts =
@@ -42,7 +36,12 @@ const BlogPage = () => {
       </div>
       <div className="grid w-full grid-cols-1 lg:grid-cols-3 gap-12 p-2">
         <div className="lg:col-span-2 w-full grid grid-cols-1 gap-8 ">
-          {publishedPosts.length > 0 ? (
+          {loading ? (
+            <>
+              <Skeleton className="w-full h-64 bg-white dark:bg-slate-800 rounded-xl shadow-lg" />
+              <Skeleton className="w-full h-64 bg-white dark:bg-slate-800 rounded-xl shadow-lg" />
+            </>
+          ) : publishedPosts.length > 0 ? (
             publishedPosts.map((post: IBlogPost) => {
               const safeExcerpt = post.content
                 ? `${post.content.substring(0, 100)}...`
@@ -63,6 +62,7 @@ const BlogPage = () => {
               );
             })
           ) : (
+            // Show "No Posts Found" if no posts are available
             <div className="text-center text-gray-500 dark:text-gray-400 text-xl p-12">
               No Posts Found!
             </div>

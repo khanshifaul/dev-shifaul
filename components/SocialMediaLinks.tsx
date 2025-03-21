@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 import {
@@ -54,58 +54,56 @@ export const SocialMediaLinks = () => {
   ];
 
   return (
-    <AnimatePresence>
-      <motion.div className="flex flex-col items-center gap-6 p-6">
-        <motion.h2
-          animate={{
-            opacity: [0, 100],
-            transition: { duration: 1, ease: "easeInOut" },
-          }}
-          className="text-3xl font-bold mb-4 border-b-3 border-blue-500"
-        >
-          Connect with Me
-        </motion.h2>
-        {/* Intro Text */}
-        <motion.p
-          animate={{
-            opacity: [0, 100],
-            transition: { duration: 1, ease: "easeInOut" },
-          }}
-          className="text-gray-600 text-center max-w-lg"
-        >
-          I&apos;m active on various platforms! Follow me on social media to
-          stay updated on my latest projects, thoughts, and more.
-        </motion.p>
+    <motion.div className="flex flex-col items-center gap-6 p-6">
+      <motion.h2
+        animate={{
+          opacity: [0, 100],
+          transition: { duration: 1, ease: "easeInOut" },
+        }}
+        className="text-3xl font-bold mb-4 border-b-3 border-blue-500"
+      >
+        Connect with Me
+      </motion.h2>
+      {/* Intro Text */}
+      <motion.p
+        animate={{
+          opacity: [0, 100],
+          transition: { duration: 1, ease: "easeInOut" },
+        }}
+        className="text-gray-600 text-center max-w-lg"
+      >
+        I&apos;m active on various platforms! Follow me on social media to stay
+        updated on my latest projects, thoughts, and more.
+      </motion.p>
 
-        {/* Social Links */}
-        <motion.div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
-          {links.map((link, index) => (
-            <motion.div
-              key={link.name}
-              animate={{
-                opacity: [0, 1],
-                y: [0, 20],
-                transition: { duration: 0.6, delay: index * 0.2 + 0.4 },
-              }}
-              className="flex flex-col items-center bg-light dark:bg-dark rounded-lg p-4 shadow-md shadow-blue-400 hover:shadow-lg transition duration-300"
+      {/* Social Links */}
+      <motion.div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full">
+        {links.map((link, index) => (
+          <motion.div
+            key={link.name}
+            animate={{
+              opacity: [0, 1],
+              y: [0, 20],
+              transition: { duration: 0.6, delay: index * 0.2 + 0.4 },
+            }}
+            className="flex flex-col items-center bg-light dark:bg-dark rounded-lg p-4 shadow-md shadow-blue-400 hover:shadow-lg transition duration-300"
+          >
+            <Link
+              aria-label={link.name}
+              className="flex flex-col items-center gap-2"
+              href={link.href}
             >
-              <Link
-                aria-label={link.name}
-                className="flex flex-col items-center gap-2"
-                href={link.href}
-              >
-                {link.icon}
-                <span className="text-lg font-semibold text-gray-800 dark:text-white">
-                  {link.name}
-                </span>
-                <p className="text-sm text-gray-500 text-center max-w-xs">
-                  {link.description}
-                </p>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
+              {link.icon}
+              <span className="text-lg font-semibold text-gray-800 dark:text-white">
+                {link.name}
+              </span>
+              <p className="text-sm text-gray-500 text-center max-w-xs">
+                {link.description}
+              </p>
+            </Link>
+          </motion.div>
+        ))}
       </motion.div>
-    </AnimatePresence>
+    </motion.div>
   );
 };

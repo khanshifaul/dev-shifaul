@@ -1,4 +1,5 @@
 // PublicLayout.tsx
+import { AnimatePresence } from "framer-motion";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -34,5 +35,5 @@ export default function BlogLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return <AnimatePresence>{children}</AnimatePresence>;
 }

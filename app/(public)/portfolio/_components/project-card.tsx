@@ -13,8 +13,14 @@ interface ProjectCardProps {
 }
 
 const motion_card = {
+  initial: {
+    scale: 1,
+  },
+  hover: {
+    scale: [1, 1.05],
+  },
   animate: {
-    scale: [0.95, 1],
+    scale: [1.05, 1],
   },
   tap: {
     scale: 0.95,
@@ -22,12 +28,18 @@ const motion_card = {
   },
 };
 const motion_image = {
-  animate: {
+  initial: {
+    scale: 1,
+  },
+  hover: {
     scale: [1, 1.05],
     delay: 0.2,
     transition: {
       duration: 1,
     },
+  },
+  animate: {
+    scale: [1.05, 1],
   },
 };
 
@@ -42,17 +54,18 @@ const ProjectCard = ({
   return (
     <Link href={`/portfolio/${slug}`}>
       <motion.div
-        whileHover="animate"
+        initial="initial"
+        whileHover="hover"
         variants={motion_card}
         whileTap="tap"
         className="relative h-fit bg-slate-500 dark:bg-slate-900 rounded-4xl overflow-hidden"
       >
         {/* Tags Section */}
         <div className="flex justify-end gap-4 pt-4 px-4 md:pt-12 md:px-12">
-          {tags.map((tag, index) => (
+          {tags.slice(0, 3).map((tag, index) => (
             <div
               key={index}
-              className="bg-slate-500 px-4 py-3 rounded-xl font-bold shadow-lg shadow-slate-900 dark:shadow-slate-500"
+              className="bg-slate-500 px-4 py-3 rounded-xl font-bold drop-shadow-md shadow-slate-900 dark:shadow-slate-500"
             >
               {tag}
             </div>
@@ -78,6 +91,8 @@ const ProjectCard = ({
 
         {/* Main Image Section */}
         <motion.div
+          initial="initial"
+          whileHover="hover"
           variants={motion_image}
           className="w-full h-[50vh] lg:h-[75vh] relative overflow-hidden"
         >

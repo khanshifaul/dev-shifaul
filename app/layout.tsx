@@ -1,9 +1,9 @@
-import HiddenAccess from "@/components/admin/hidden-door";
 import CursorWrapper from "@/components/cursor-wrapper";
 import { AProviders } from "@/components/providers/apollo-provider";
 import { StoreProvider } from "@/components/providers/store-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { AnimatePresence } from "framer-motion";
 import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
@@ -29,13 +29,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <HiddenAccess />
           <CursorWrapper>
             <main
               className={`bg-linear-to-b from-blue-300  to-orange-100  dark:from-black  dark:to-gray-800 cursor-default`}
             >
               <StoreProvider>
-                <AProviders>{children}</AProviders>
+                <AProviders>
+                  <AnimatePresence>{children}</AnimatePresence>
+                </AProviders>
               </StoreProvider>
             </main>
           </CursorWrapper>
