@@ -16,7 +16,12 @@ const publicRoutes = [
 ];
 const authRoutes = ["/sign-in"];
 const passwordRoutes = ["/reset-password", "/forgot-password"];
-const adminRoutes = ["/admin/(.*)"];
+const adminRoutes = [
+  "/admin/(.*)",
+  "/admin/users",
+  "/admin/blog-posts",
+  "/admin/blog-posts/new",
+];
 
 export default async function authMiddleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
